@@ -109,6 +109,9 @@ export class Chrome74 extends HandlerInterface
 			try { pc.close(); }
 			catch (error) {}
 
+			offer.sdp = offer.sdp.replace('a=rtpmap:111 opus/48000/2',
+				'a=rtpmap:10 l16/32000/2\r\na=rtpmap:111 opus/48000/2');
+
 			const sdpObject = sdpTransform.parse(offer.sdp);
 			const nativeRtpCapabilities =
 				sdpCommonUtils.extractRtpCapabilities({ sdpObject });
